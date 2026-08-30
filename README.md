@@ -31,3 +31,5 @@ Se calcularán las emisiones estimadas de CO2 utilizando factores de emisión ya
 - Generación de reportes y comparación:
 El sistema procesa los resultados y generará en la consola un reporte usando la precisión a 2 o 3 decimales para garantizar información clara.
 Mostrará un análisis comparativo que identifique el medio más eficiente para el trayecto ingresado y el porcentaje de ahorro energético o de reducción de emisiones respecto a las alternativas.
+
+# El pseudo codigo del proyecto esta en otro archivo en pdf.
