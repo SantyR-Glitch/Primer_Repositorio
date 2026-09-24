@@ -1,6 +1,6 @@
 # Propuesta de Proyecto: 
-# Calculadora y Analizador de Eficiencia Energética en el Transporte.
-# Santiago Alexander Rosales Avendaño
+## Calculadora y Analizador de Eficiencia Energética en el Transporte.
+Santiago Alexander Rosales Avendaño
 
 # 1. Descripción General del Proyecto:
 El proyecto consiste en el desarrollo de un programa interactivo en Python diseñado para calcular, comparar y analizar el consumo energético y las emisiones asociadas a distintos medios de transporte (como vehículos de combustión interna, vehículos eléctricos y bicicletas) en trayectos determinados. 
