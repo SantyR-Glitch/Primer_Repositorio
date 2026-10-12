@@ -74,6 +74,16 @@ def calculo_bicicleta(cc, db):
     eficiencia = energia / db
     return energia, emisiones, eficiencia
 
+# Esta funcion se usa para verificar que los valores sean mayores a 0,
+# y que asi se puedan usar esos numeros en las funciones para hacer los calculos.
+
+def debe_ser_mayor_a_cero (numeros):
+    valor = float(input(numeros))
+    while valor <= 0:
+        print("El numero debe ser mayor a cero.")
+        valor = float(input(numeros))
+    return valor
+
 
 # Este es el menu de opciones donde el usuario o persona que quiera usar la calculadora,
 # ecologica tendra que escoger dentro de las opciones cual quiere uasar del 1 al 4.
@@ -85,84 +95,72 @@ if opcion == 1:
     print("Aqui se calcula el carro electrico.")
     print(".............................................................")
 
-    dc = float(input("¿Cual fue la distancia total en carro (km)?: "))
-    ae = float(input("¿Cual es el consumo promedio del auto electrico (kWh/km)?: "))
+    dc = debe_ser_mayor_a_cero ("¿Cual fue la distancia total en carro (km)?: ")
+    ae = debe_ser_mayor_a_cero ("¿Cual es el consumo promedio del auto electrico (kWh/km)?: ")
 
-    if dc <= 0 or ae <= 0:
-        print("Los valores deben ser mayores a cero.")
-    else:
-        consumo, emisiones, eficiencia = calculo_carro_electrico(dc, ae)
-        print(".............................................................")
-        print(f"El consumo de electricidad es: {consumo:.3f} kWh")
-        print(f"Las emisiones de CO2 del auto electrico son: {emisiones:.3f} kg")
-        print(f"La eficiencia del auto electrico es: {eficiencia:.3f} kWh/km")
-        print(".............................................................")
+    consumo, emisiones, eficiencia = calculo_carro_electrico(dc, ae)
+    print(".............................................................")
+    print(f"El consumo de electricidad es: {consumo:.3f} kWh")
+    print(f"Las emisiones de CO2 del auto electrico son: {emisiones:.3f} kg")
+    print(f"La eficiencia del auto electrico es: {eficiencia:.3f} kWh/km")
+    print(".............................................................")
 
 elif opcion == 2:
     print(".............................................................")
     print("Aqui se calcula el carro de gasolina.")
     print(".............................................................")
 
-    dc = float(input("¿Cual fue la distancia total en carro (km)?: "))
-    rg = float(input("¿Cual es el rendimiento del carro de gasolina (km/L)?: "))
+    dc = debe_ser_mayor_a_cero ("¿Cual fue la distancia total en carro (km)?: ")
+    rg = debe_ser_mayor_a_cero ("¿Cual es el rendimiento del carro de gasolina (km/L)?: ")
 
-    if dc <= 0 or rg <= 0:
-        print("Los valores deben ser mayores a cero.")
-    else:
-        litros, energia, emisiones, eficiencia = calculo_carro_gasolina(dc, rg)
-        print(".............................................................")
-        print(f"El consumo de gasolina es: {litros:.3f} L")
-        print(f"La energia consumida es: {energia:.3f} kWh")
-        print(f"Las emisiones de CO2 del carro de gasolina son: {emisiones:.3f} kg")
-        print(f"La eficiencia del auto de gasolina es: {eficiencia:.3f} kWh/km")
-        print(".............................................................")
+    litros, energia, emisiones, eficiencia = calculo_carro_gasolina(dc, rg)
+    print(".............................................................")
+    print(f"El consumo de gasolina es: {litros:.3f} L")
+    print(f"La energia consumida es: {energia:.3f} kWh")
+    print(f"Las emisiones de CO2 del carro de gasolina son: {emisiones:.3f} kg")
+    print(f"La eficiencia del auto de gasolina es: {eficiencia:.3f} kWh/km")
+    print(".............................................................")
 
 elif opcion == 3:
     print(".............................................................")
     print("Aqui se calcula la bicicleta.")
     print(".............................................................")
 
-    cc = float(input("¿Cuantas kcal consumiste o quemaste al usar la bicicleta?: "))
-    db = float(input("¿Cual es la distancia recorrida en bicicleta (km)?: "))
+    cc = debe_ser_mayor_a_cero ("¿Cuantas kcal consumiste o quemaste al usar la bicicleta?: ")
+    db = debe_ser_mayor_a_cero ("¿Cual es la distancia recorrida en bicicleta (km)?: ")
 
-    if cc <= 0 or db <= 0:
-        print("Los valores deben ser mayores a cero.")
-    else:
-        energia, emisiones, eficiencia = calculo_bicicleta(cc, db)
-        print(".............................................................")
-        print(f"El gasto especifico de la bicicleta es: {energia:.3f} kWh")
-        print(f"Las emisiones de CO2 de la bicicleta son: {emisiones:.3f} kg")
-        print(f"La eficiencia de la bicicleta es: {eficiencia:.3f} kWh/km")
-        print(".............................................................")
+    energia, emisiones, eficiencia = calculo_bicicleta(cc, db)
+    print(".............................................................")
+    print(f"El gasto especifico de la bicicleta es: {energia:.3f} kWh")
+    print(f"Las emisiones de CO2 de la bicicleta son: {emisiones:.3f} kg")
+    print(f"La eficiencia de la bicicleta es: {eficiencia:.3f} kWh/km")
+    print(".............................................................")
 
 elif opcion == 4:
     print(".............................................................")
     print("Aqui se calcularan las 3 opciones")
     print(".............................................................")
 
-    Dc = float(input("¿Cual es la distancia total del trayecto en carro (km)?: "))
-    Db = float(input("¿Cual es la distancia recorrida en bicicleta (km)?: "))
-    Rg = float(input("¿Cual es el rendimiento del vehiculo a gasolina (km/L)?: "))
-    Ae = float(input("¿Cual es el consumo promedio del auto electrico (kWh/km)?: "))
-    Cc = float(input("¿Cuantas kcal se gastaron al usar la bicicleta?: "))
+    Dc = debe_ser_mayor_a_cero ("¿Cual es la distancia total del trayecto en carro (km)?: ")
+    Db = debe_ser_mayor_a_cero ("¿Cual es la distancia recorrida en bicicleta (km)?: ")
+    Rg = debe_ser_mayor_a_cero ("¿Cual es el rendimiento del vehiculo a gasolina (km/L)?: ")
+    Ae = debe_ser_mayor_a_cero ("¿Cual es el consumo promedio del auto electrico (kWh/km)?: ")
+    Cc = debe_ser_mayor_a_cero ("¿Cuantas kcal se gastaron al usar la bicicleta?: ")
 
     print(".............................................................")
 
-    if Dc <= 0 or Db <= 0 or Rg <= 0 or Ae <= 0 or Cc <= 0:
-        print("Los valores deben ser mayores a cero.")
-    else:
-        resultados = conversion_energia(Dc, Rg, Ae, Cc, Db)
-        B, G, E, emision_bicicleta, CO2, CO2_E, eficiencia_gas, eficiencia_electrico, eficiencia_bicicleta = resultados
+    resultados = conversion_energia(Dc, Rg, Ae, Cc, Db)
+    B, G, E, emision_bicicleta, CO2, CO2_E, eficiencia_gas, eficiencia_electrico, eficiencia_bicicleta = resultados
 
-        print(".............................................................")
-        print(f"El consumo de gasolina es: {G:.3f} L")
-        print(f"El consumo de electricidad es: {E:.3f} kWh")
-        print(f"El gasto especifico de la bicicleta es: {B:.3f} kWh")
-        print(f"Las emisiones de CO2 son: {CO2:.3f} kg")
-        print(f"Las emisiones de CO2 del auto electrico son: {CO2_E:.3f} kg")
-        print(f"La eficiencia del auto a gasolina es: {eficiencia_gas:.3f} kWh/km")
-        print(f"La eficiencia del auto electrico es: {eficiencia_electrico:.3f} kWh/km")
-        print(f"La eficiencia de la bicicleta es: {eficiencia_bicicleta:.3f} kWh/km")
-        print(".............................................................")
+    print(".............................................................")
+    print(f"El consumo de gasolina es: {G:.3f} L")
+    print(f"El consumo de electricidad es: {E:.3f} kWh")
+    print(f"El gasto especifico de la bicicleta es: {B:.3f} kWh")
+    print(f"Las emisiones de CO2 son: {CO2:.3f} kg")
+    print(f"Las emisiones de CO2 del auto electrico son: {CO2_E:.3f} kg")
+    print(f"La eficiencia del auto a gasolina es: {eficiencia_gas:.3f} kWh/km")
+    print(f"La eficiencia del auto electrico es: {eficiencia_electrico:.3f} kWh/km")
+    print(f"La eficiencia de la bicicleta es: {eficiencia_bicicleta:.3f} kWh/km")
+    print(".............................................................")
 else:
     print("No tenemos esa opcion, asi que elige otra del 1 al 4.")
