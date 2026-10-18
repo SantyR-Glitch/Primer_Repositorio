@@ -44,7 +44,8 @@ def conversion_energia(Dc, Rg, Ae, Cc, Db):
     eficiencia_energia_kWh_entre_km_auto_electrico = Ae
     eficiencia_energia_kWh_entre_km_bicicleta = energia_bicicleta / Db
 
-    return (energia_bicicleta,energia_gasolina,energia_auto_electrico,emision_bicicleta,emisiones_co2_gasolina,emisiones_co2_auto_electrico,eficiencia_energia_kWh_entre_km_auto_gas,eficiencia_energia_kWh_entre_km_auto_electrico,eficiencia_energia_kWh_entre_km_bicicleta)
+    # Se guardan los resultados en una lista para usarlos facilmente.
+    return [energia_bicicleta,energia_gasolina,energia_auto_electrico,emision_bicicleta,emisiones_co2_gasolina,emisiones_co2_auto_electrico,eficiencia_energia_kWh_entre_km_auto_gas,eficiencia_energia_kWh_entre_km_auto_electrico,eficiencia_energia_kWh_entre_km_bicicleta,]
 
 # Esta Funcion def calculo_carro_electrico(dc, ae), es para calcular, 
 # solo el consumo, emisiones y eficiencia del carro electrico.
@@ -53,7 +54,7 @@ def calculo_carro_electrico(dc, ae):
     consumo = dc * ae
     emisiones = consumo * 0.45
     eficiencia = ae
-    return consumo, emisiones, eficiencia
+    return [consumo, emisiones, eficiencia]
 
 # Esta Funcion def calculo_carro_gasolina(dc, rg), es para calcular solo el consumo, 
 # emisiones y eficiencia del carro de gasolina
@@ -63,7 +64,7 @@ def calculo_carro_gasolina(dc, rg):
     energia = litros * 8.9
     emisiones = litros * 2.31
     eficiencia = energia / dc
-    return litros, energia, emisiones, eficiencia
+    return [litros, energia, emisiones, eficiencia]
 
 # Esta Funcion def calculo_bicicleta(cc, db), es para calcular solo el consumo, emisiones y 
 # eficiencia de la bicicleta
@@ -72,7 +73,7 @@ def calculo_bicicleta(cc, db):
     energia = cc * 0.001163
     emisiones = 0.0
     eficiencia = energia / db
-    return energia, emisiones, eficiencia
+    return [energia, emisiones, eficiencia]
 
 # Esta funcion se usa para verificar que los valores sean mayores a 0,
 # y que asi se puedan usar esos numeros en las funciones para hacer los calculos.
@@ -84,11 +85,14 @@ def debe_ser_mayor_a_cero (numeros):
         valor = float(input(numeros))
     return valor
 
-
 # Este es el menu de opciones donde el usuario o persona que quiera usar la calculadora,
-# ecologica tendra que escoger dentro de las opciones cual quiere uasar del 1 al 4.
+# ecologica tendra que escoger dentro de las opciones cual quiere usar del 1 al 4.
+menu_opciones = ["1) Carro electrico","2) Carro de gasolina","3) Bicicleta", "4) Las 3 opciones",]
 
-opcion = int(input("Bienvenido, ¿Que quieres calcular? 1) Carro electrico, 2) Carro de gasolina, 3) Bicicleta, 4) Las 3 opciones: "))
+print("Bienvenido, ¿Que quieres calcular?")
+for opcion_menu in menu_opciones:
+    print(opcion_menu)
+opcion = int(input("Elige una opcion: "))
 
 if opcion == 1:
     print(".............................................................")
