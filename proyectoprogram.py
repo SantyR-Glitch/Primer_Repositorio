@@ -157,14 +157,14 @@ elif opcion == 4:
     B, G, E, emision_bicicleta, CO2, CO2_E, eficiencia_gas, eficiencia_electrico, eficiencia_bicicleta = resultados
 
     print(".............................................................")
-    print(f"El consumo de gasolina es: {G:.3f} L")
-    print(f"El consumo de electricidad es: {E:.3f} kWh")
-    print(f"El gasto especifico de la bicicleta es: {B:.3f} kWh")
-    print(f"Las emisiones de CO2 son: {CO2:.3f} kg")
-    print(f"Las emisiones de CO2 del auto electrico son: {CO2_E:.3f} kg")
-    print(f"La eficiencia del auto a gasolina es: {eficiencia_gas:.3f} kWh/km")
-    print(f"La eficiencia del auto electrico es: {eficiencia_electrico:.3f} kWh/km")
-    print(f"La eficiencia de la bicicleta es: {eficiencia_bicicleta:.3f} kWh/km")
+    matriz_resultados = [
+        ["Gasolina", G, CO2, eficiencia_gas],
+        ["Eléctrico", E, CO2_E, eficiencia_electrico],
+        ["Bicicleta", B, emision_bicicleta, eficiencia_bicicleta],
+    ]
+    print("Vehiculo,  Energía (kWh),  CO2 (kg),  Eficiencia (kWh/km)")
+    for i in matriz_resultados:
+        print(i[0], f"{i[1]:.3f}, {i[2]:.3f}, {i[3]:.3f}")
     print(".............................................................")
 else:
     print("No tenemos esa opcion, asi que elige otra del 1 al 4.")
