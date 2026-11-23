@@ -1,3 +1,11 @@
+
+import os
+
+RUTA_RESULTADOS = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)),
+    "resultados.txt",
+)
+
 # Esta Funcion: def conversion_energia(Dc, Rg, Ae, Cc, Db),calcula la eficienica, 
 # energia consumida y las emisiones de CO2.
 # de un auto de gasolina uno electrico y una bicicleta.
@@ -27,7 +35,6 @@
 # en kWh del auto electrico y se usa = Ae porque la variable ya esta en kWh/Km.
 # La variable eficiencia_energia_kWh_entre_km_bicicleta se refiere a kWh/Km de la bici,
 # donde usa energia_bicicleta / Db que es la energia de la bici ya en kWh y la distancia.
-
 
 def conversion_energia(Dc, Rg, Ae, Cc, Db):
     litros_gasolina = Dc / Rg
@@ -92,7 +99,19 @@ menu_opciones = ["1) Carro electrico","2) Carro de gasolina","3) Bicicleta", "4)
 print("Bienvenido, ¿Que quieres calcular?")
 for opcion_menu in menu_opciones:
     print(opcion_menu)
-opcion = int(input("Elige una opcion: "))
+print("Tambien puedes escribir: electrico, gasolina, bicicleta o todas.")
+entrada_opcion = input("Elige una opcion: ").strip().lower()
+opcion = {
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "electrico": 1,
+    "eléctrico": 1,
+    "gasolina": 2,
+    "bicicleta": 3,
+    "todas": 4,
+}.get(entrada_opcion)
 
 if opcion == 1:
     print(".............................................................")
@@ -108,6 +127,13 @@ if opcion == 1:
     print(f"Las emisiones de CO2 del auto electrico son: {emisiones:.3f} kg")
     print(f"La eficiencia del auto electrico es: {eficiencia:.3f} kWh/km")
     print(".............................................................")
+    with open(RUTA_RESULTADOS, "a", encoding="utf-8") as archivo:
+        archivo.write("Carro electrico:\n")
+        archivo.write(f"Consumo: {consumo:.3f} kWh\n")
+        archivo.write(f"CO2: {emisiones:.3f} kg\n")
+        archivo.write(f"Eficiencia: {eficiencia:.3f} kWh/km\n")
+        archivo.write(".............................................................\n")
+    print(f"Resultado guardado en {RUTA_RESULTADOS}")
 
 elif opcion == 2:
     print(".............................................................")
@@ -124,6 +150,14 @@ elif opcion == 2:
     print(f"Las emisiones de CO2 del carro de gasolina son: {emisiones:.3f} kg")
     print(f"La eficiencia del auto de gasolina es: {eficiencia:.3f} kWh/km")
     print(".............................................................")
+    with open(RUTA_RESULTADOS, "a", encoding="utf-8") as archivo:
+        archivo.write("Carro de gasolina:\n")
+        archivo.write(f"Consumo: {litros:.3f} L\n")
+        archivo.write(f"Energia: {energia:.3f} kWh\n")
+        archivo.write(f"CO2: {emisiones:.3f} kg\n")
+        archivo.write(f"Eficiencia: {eficiencia:.3f} kWh/km\n")
+        archivo.write(".............................................................\n")
+    print(f"Resultado guardado en {RUTA_RESULTADOS}")
 
 elif opcion == 3:
     print(".............................................................")
@@ -139,6 +173,13 @@ elif opcion == 3:
     print(f"Las emisiones de CO2 de la bicicleta son: {emisiones:.3f} kg")
     print(f"La eficiencia de la bicicleta es: {eficiencia:.3f} kWh/km")
     print(".............................................................")
+    with open(RUTA_RESULTADOS, "a", encoding="utf-8") as archivo:
+        archivo.write("Bicicleta:\n")
+        archivo.write(f"Energia: {energia:.3f} kWh\n")
+        archivo.write(f"CO2: {emisiones:.3f} kg\n")
+        archivo.write(f"Eficiencia: {eficiencia:.3f} kWh/km\n")
+        archivo.write(".............................................................\n")
+    print(f"Resultado guardado en {RUTA_RESULTADOS}")
 
 elif opcion == 4:
     print(".............................................................")
@@ -166,5 +207,14 @@ elif opcion == 4:
     for i in matriz_resultados:
         print(i[0], f"{i[1]:.3f}, {i[2]:.3f}, {i[3]:.3f}")
     print(".............................................................")
+    with open(RUTA_RESULTADOS, "a", encoding="utf-8") as archivo:
+        for i in matriz_resultados:
+            archivo.write(
+                f"{i[0]} | Energia: {i[1]:.3f} kWh | "
+                f"CO2: {i[2]:.3f} kg | "
+                f"Eficiencia: {i[3]:.3f} kWh/km\n"
+            )
+        archivo.write(".............................................................\n")
+    print(f"Resultados guardados en {RUTA_RESULTADOS}")
 else:
     print("No tenemos esa opcion, asi que elige otra del 1 al 4.")
