@@ -1,24 +1,29 @@
-
+"""Aqui se crea una ruta para que el archivo txt de resultados funcione asi se este
+ejecutando de otra carpeta
+"""
 import os
-
+""" os.path.abspath(__file__) Es para la ubicacion del archivo proyectoprogram.py,
+os.path.dirname() con este obtengo la ruta absoluta del archivo,
+os.path.join(.. , "resultados.txt") con este obtengo la carpeta que tiene este archivo
+"""
 RUTA_RESULTADOS = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
     "resultados.txt",
 )
 
-# Esta Funcion: def conversion_energia(Dc, Rg, Ae, Cc, Db),calcula la eficienica, 
-# energia consumida y las emisiones de CO2.
-# de un auto de gasolina uno electrico y una bicicleta.
-# La variable litros_gasolina usa las variables Dc y Rg para calcular los litros de, 
-# gasolina consumidos para usarlos en la funcion de abajo del calculo de,
-# su consumo de Energia y se mutiplica por 8.9,
-# para pasarlos a kWh, donde Dc se refiere a la distancia recorrida 
-# y Rg al rendimiento de Km/L. 
-# Despues se calcula emisones_co2_gasolina que indica en kg cuanto CO2 produce.
-# Se usa la variable anteriormente descrita que es litros_gasolina,
-# cantidad de litros usados y se multiplica por 2.31 para,
-# convertirlo y asi obtener el dato sobre las emisiones de CO2.
-# La variable energia_auto_electrico nos indica que tanto se consumio en kWh y 
+""" Esta Funcion: def conversion_energia(Dc, Rg, Ae, Cc, Db),calcula la eficienica, 
+energia consumida y las emisiones de CO2.
+de un auto de gasolina uno electrico y una bicicleta.
+La variable litros_gasolina usa las variables Dc y Rg para calcular los litros de, 
+gasolina consumidos para usarlos en la funcion de abajo del calculo de,
+su consumo de Energia y se mutiplica por 8.9,
+para pasarlos a kWh, donde Dc se refiere a la distancia recorrida 
+y Rg al rendimiento de Km/L. 
+Despues se calcula emisones_co2_gasolina que indica en kg cuanto CO2 produce.
+Se usa la variable anteriormente descrita que es litros_gasolina,
+cantidad de litros usados y se multiplica por 2.31 para,
+convertirlo y asi obtener el dato sobre las emisiones de CO2.
+La variable energia_auto_electrico nos indica que tanto se consumio en kWh y 
 # usa Dc mutiplicandola por Ae donde es Distancia Recorrida por, 
 # el Consumo promedio del auto electrico kWh/km respectivamente.
 # La variable emisiones_co2_auto_electrico nos indica las emisones de CO2 del carro electrico,
@@ -35,6 +40,7 @@ RUTA_RESULTADOS = os.path.join(
 # en kWh del auto electrico y se usa = Ae porque la variable ya esta en kWh/Km.
 # La variable eficiencia_energia_kWh_entre_km_bicicleta se refiere a kWh/Km de la bici,
 # donde usa energia_bicicleta / Db que es la energia de la bici ya en kWh y la distancia.
+"""
 
 def conversion_energia(Dc, Rg, Ae, Cc, Db):
     litros_gasolina = Dc / Rg
@@ -127,13 +133,16 @@ if opcion == 1:
     print(f"Las emisiones de CO2 del auto electrico son: {emisiones:.3f} kg")
     print(f"La eficiencia del auto electrico es: {eficiencia:.3f} kWh/km")
     print(".............................................................")
+
+    """ Con encoding="utf-8" me ayudo para mantener acentos"""
+
     with open(RUTA_RESULTADOS, "a", encoding="utf-8") as archivo:
         archivo.write("Carro electrico:\n")
         archivo.write(f"Consumo: {consumo:.3f} kWh\n")
         archivo.write(f"CO2: {emisiones:.3f} kg\n")
         archivo.write(f"Eficiencia: {eficiencia:.3f} kWh/km\n")
         archivo.write(".............................................................\n")
-    print(f"Resultado guardado en {RUTA_RESULTADOS}")
+    print(f"Resultado ahora guardado en {RUTA_RESULTADOS}")
 
 elif opcion == 2:
     print(".............................................................")
@@ -150,6 +159,9 @@ elif opcion == 2:
     print(f"Las emisiones de CO2 del carro de gasolina son: {emisiones:.3f} kg")
     print(f"La eficiencia del auto de gasolina es: {eficiencia:.3f} kWh/km")
     print(".............................................................")
+
+    """ Con encoding="utf-8" me ayudo para mantener acentos"""
+
     with open(RUTA_RESULTADOS, "a", encoding="utf-8") as archivo:
         archivo.write("Carro de gasolina:\n")
         archivo.write(f"Consumo: {litros:.3f} L\n")
@@ -157,7 +169,7 @@ elif opcion == 2:
         archivo.write(f"CO2: {emisiones:.3f} kg\n")
         archivo.write(f"Eficiencia: {eficiencia:.3f} kWh/km\n")
         archivo.write(".............................................................\n")
-    print(f"Resultado guardado en {RUTA_RESULTADOS}")
+    print(f"Resultado ahora guardado en {RUTA_RESULTADOS}")
 
 elif opcion == 3:
     print(".............................................................")
@@ -173,17 +185,20 @@ elif opcion == 3:
     print(f"Las emisiones de CO2 de la bicicleta son: {emisiones:.3f} kg")
     print(f"La eficiencia de la bicicleta es: {eficiencia:.3f} kWh/km")
     print(".............................................................")
+
+    """ Con encoding="utf-8" me ayudo para mantener acentos"""
+
     with open(RUTA_RESULTADOS, "a", encoding="utf-8") as archivo:
         archivo.write("Bicicleta:\n")
         archivo.write(f"Energia: {energia:.3f} kWh\n")
         archivo.write(f"CO2: {emisiones:.3f} kg\n")
         archivo.write(f"Eficiencia: {eficiencia:.3f} kWh/km\n")
         archivo.write(".............................................................\n")
-    print(f"Resultado guardado en {RUTA_RESULTADOS}")
+    print(f"Resultado ahora guardado en {RUTA_RESULTADOS}")
 
 elif opcion == 4:
     print(".............................................................")
-    print("Aqui se calcularan las 3 opciones")
+    print("Aqui se calculan las 3 opciones")
     print(".............................................................")
 
     Dc = debe_ser_mayor_a_cero ("¿Cual es la distancia total del trayecto en carro (km)?: ")
@@ -207,6 +222,9 @@ elif opcion == 4:
     for i in matriz_resultados:
         print(i[0], f"{i[1]:.3f}, {i[2]:.3f}, {i[3]:.3f}")
     print(".............................................................")
+
+    """ Con encoding="utf-8" me ayudo para mantener acentos"""
+
     with open(RUTA_RESULTADOS, "a", encoding="utf-8") as archivo:
         for i in matriz_resultados:
             archivo.write(
@@ -215,6 +233,6 @@ elif opcion == 4:
                 f"Eficiencia: {i[3]:.3f} kWh/km\n"
             )
         archivo.write(".............................................................\n")
-    print(f"Resultados guardados en {RUTA_RESULTADOS}")
+    print(f"Resultados ahora guardados en {RUTA_RESULTADOS}")
 else:
-    print("No tenemos esa opcion, asi que elige otra del 1 al 4.")
+    print("No hay esa opcion, asi que elige otra del 1 al 4.")
